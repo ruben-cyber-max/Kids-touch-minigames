@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#f97316" />
+  <title>ציור — משחקי מגע</title>
+  <link rel="stylesheet" href="../css/main.css" />
+  <style>
+    .game-body { flex: 1; min-height: 0; }
+    .game-page { height: 100dvh; max-height: 100dvh; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="game-page">
+    <header class="game-topbar">
+      <a href="../index.html" class="btn-back" style="text-decoration:none;">🏠 תפריט</a>
+      <h1 class="game-title">🎨 ציור</h1>
+      <span style="width:72px"></span>
+    </header>
+    <div class="game-body">
+      <div class="draw-toolbar">
+        <div id="colors" style="display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:center;"></div>
+        <div style="display:flex;gap:0.4rem;width:100%;justify-content:center;">
+          <button type="button" class="brush-btn" data-size="6">דק</button>
+          <button type="button" class="brush-btn active" data-size="12">רגיל</button>
+          <button type="button" class="brush-btn" data-size="28">עבה</button>
+          <button type="button" class="tool-btn" id="btn-clear">🗑️ נקה</button>
+          <button type="button" class="tool-btn" id="btn-done" style="background:linear-gradient(145deg,#6ee7b7,#34d399);color:#fff;">✨ סיימתי</button>
+        </div>
+        <div class="stamps-row" id="stamps"></div>
+      </div>
+      <div class="canvas-wrap" id="canvas-wrap">
+        <canvas id="paintCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/drawing.js"></script>
+</body>
+</html>

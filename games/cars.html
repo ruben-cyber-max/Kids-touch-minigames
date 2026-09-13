@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#3b82f6" />
+  <title>מכוניות — משחקי מגע</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <div class="game-page">
+    <header class="game-topbar">
+      <a href="../index.html" class="btn-back" style="text-decoration:none;">🏠 תפריט</a>
+      <h1 class="game-title">🚗 מכוניות</h1>
+      <span style="width:72px"></span>
+    </header>
+    <div class="game-body">
+      <div class="cars-mode-tabs">
+        <button type="button" class="mode-tab active" data-mode="park">חנייה</button>
+        <button type="button" class="mode-tab" data-mode="wash">שטיפה</button>
+      </div>
+
+      <div id="park-area" class="park-area">
+        <p class="instructions">גררו או לחצו על רכב, ואז על החניה</p>
+        <div class="parking-lot" id="parking-lot"></div>
+        <div class="vehicles-tray" id="vehicles-tray" aria-label="רכבים"></div>
+      </div>
+
+      <div id="wash-area" class="wash-area">
+        <p class="instructions">החליקו על המשאית כדי לשטוף אותה</p>
+        <div class="truck-wash" id="truck-wash">
+          <div class="dirty-truck" id="dirty-truck">🚛</div>
+          <div class="dirt-layer" id="dirt-layer"></div>
+        </div>
+        <div class="wash-progress" aria-hidden="true">
+          <div class="wash-bar" id="wash-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/common.js"></script>
+  <script src="../js/cars.js"></script>
+</body>
+</html>

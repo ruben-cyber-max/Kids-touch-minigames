@@ -1,0 +1,715 @@
+/* Kids Touch Mini-Games — shared styles (English comments) */
+:root {
+  --bg: #fff8e7;
+  --primary: #ff6b6b;
+  --secondary: #4ecdc4;
+  --accent: #ffe66d;
+  --purple: #a78bfa;
+  --blue: #60a5fa;
+  --green: #6ee7b7;
+  --orange: #fb923c;
+  --pink: #f9a8d4;
+  --text: #2d3436;
+  --white: #ffffff;
+  --shadow: 0 6px 0 rgba(0,0,0,0.15);
+  --radius: 24px;
+  --touch: 52px;
+  font-size: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  direction: rtl;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+body {
+  font-family: "Segoe UI", "Heebo", "Arial Hebrew", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  min-height: var(--touch);
+  min-width: var(--touch);
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 16px;
+  touch-action: manipulation;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+button:active { transform: scale(0.96) translateY(2px); }
+
+/* —— Hub —— */
+.hub {
+  min-height: 100dvh;
+  padding: 1.25rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, #ffe66d55 0%, transparent 40%),
+    radial-gradient(circle at 80% 10%, #4ecdc455 0%, transparent 35%),
+    radial-gradient(circle at 50% 90%, #ff6b6b33 0%, transparent 40%),
+    var(--bg);
+}
+
+.hub-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.hub-header h1 {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  color: var(--primary);
+  text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ffb3b3;
+  margin-bottom: 0.35rem;
+}
+
+.hub-header p {
+  font-size: 1.1rem;
+  color: #636e72;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 480px;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.25rem 0.75rem;
+  min-height: 140px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--white);
+  font-size: 1.25rem;
+  font-weight: 800;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-card .emoji {
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
+}
+
+.game-card--animals { background: linear-gradient(145deg, #6ee7b7, #34d399); }
+.game-card--cars    { background: linear-gradient(145deg, #60a5fa, #3b82f6); }
+.game-card--puzzles { background: linear-gradient(145deg, #a78bfa, #8b5cf6); }
+.game-card--drawing { background: linear-gradient(145deg, #fb923c, #f97316); }
+
+.game-card:active {
+  box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  transform: translateY(4px);
+}
+
+.hub-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #95a5a6;
+}
+
+/* —— Game shell —— */
+.game-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.game-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--white);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.btn-back {
+  background: #f1f2f6;
+  color: var(--text);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  box-shadow: 0 3px 0 #dfe4ea;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.btn-back:active { box-shadow: 0 1px 0 #dfe4ea; }
+
+.game-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  flex: 1;
+  text-align: center;
+}
+
+.game-body {
+  flex: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 560px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.instructions {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #636e72;
+  background: var(--white);
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* —— Celebration overlay —— */
+.celebrate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  padding: 1rem;
+}
+
+.celebrate.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.celebrate-card {
+  background: var(--white);
+  border-radius: 28px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.celebrate.show .celebrate-card { transform: scale(1); }
+
+.celebrate-card .big-emoji {
+  font-size: 4rem;
+  animation: bounce 0.6s ease infinite alternate;
+}
+
+.celebrate-card h2 {
+  font-size: 1.75rem;
+  color: var(--primary);
+  margin: 0.5rem 0;
+}
+
+.celebrate-card p {
+  color: #636e72;
+  margin-bottom: 1.25rem;
+}
+
+.btn-primary {
+  background: linear-gradient(145deg, #ff6b6b, #ee5a5a);
+  color: white;
+  padding: 0.85rem 1.5rem;
+  width: 100%;
+  box-shadow: 0 5px 0 #c0392b;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary:active { box-shadow: 0 2px 0 #c0392b; }
+
+.btn-secondary {
+  background: #f1f2f6;
+  color: var(--text);
+  padding: 0.75rem 1.25rem;
+  width: 100%;
+  box-shadow: 0 3px 0 #dfe4ea;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.pop { animation: pop 0.35s ease; }
+
+.confetti {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 101;
+  animation: confetti-fall 1.2s ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* —— Animals game —— */
+.habitats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.habitat {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  min-height: 110px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  border: 4px dashed #ddd;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.habitat.highlight {
+  border-color: var(--secondary);
+  background: #e8fffc;
+}
+
+.habitat.filled {
+  border-style: solid;
+  border-color: var(--green);
+  background: #ecfdf5;
+}
+
+.habitat-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #636e72;
+}
+
+.habitat-slot {
+  font-size: 2.75rem;
+  min-height: 2.75rem;
+  line-height: 1;
+}
+
+.animals-tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  min-height: 90px;
+}
+
+.draggable-item {
+  font-size: 2.75rem;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #fff, #f8f9fa);
+  border-radius: 18px;
+  box-shadow: 0 4px 0 #dfe4ea;
+  cursor: grab;
+  touch-action: none;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.draggable-item:active { cursor: grabbing; }
+.draggable-item.dragging {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+.draggable-item.placed { display: none; }
+
+.ghost svg { width: 100%; height: 100%; display: block; }
+
+.draggable-item.selected {
+  outline: 4px solid var(--accent);
+  outline-offset: 2px;
+  transform: scale(1.08);
+}
+
+.ghost {
+  position: fixed;
+  pointer-events: none;
+  z-index: 200;
+  font-size: 2.75rem;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
+  transform: translate(-50%, -50%);
+}
+
+/* —— Cars game —— */
+.cars-mode-tabs {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.mode-tab {
+  flex: 1;
+  padding: 0.65rem;
+  background: #f1f2f6;
+  color: var(--text);
+  box-shadow: 0 3px 0 #dfe4ea;
+  font-size: 1rem;
+}
+
+.mode-tab.active {
+  background: linear-gradient(145deg, #60a5fa, #3b82f6);
+  color: white;
+  box-shadow: 0 3px 0 #2563eb;
+}
+
+.parking-lot {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.parking-spot {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #2d3436;
+  border-radius: 16px;
+  padding: 0.75rem 1rem;
+  min-height: 80px;
+  border: 3px dashed #636e72;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.parking-spot.highlight {
+  border-color: var(--accent);
+  background: #3d4450;
+}
+
+.parking-spot.filled {
+  border-style: solid;
+  border-color: var(--green);
+}
+
+.spot-label {
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.spot-vehicle {
+  font-size: 2.5rem;
+  flex: 1;
+  text-align: center;
+}
+
+.vehicles-tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+/* Wash mode */
+.wash-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wash-area.active { display: flex; }
+.park-area.hidden { display: none; }
+
+.truck-wash {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4/3;
+  background: linear-gradient(180deg, #87ceeb 0%, #e8f4e8 60%);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  border: 4px solid #74b9ff;
+}
+
+.dirty-truck {
+  position: absolute;
+  inset: 15% 10%;
+  font-size: clamp(4rem, 20vw, 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: grayscale(0.3) brightness(0.7);
+  transition: filter 0.3s;
+}
+
+.dirty-truck.clean {
+  filter: none;
+}
+
+.dirt-layer {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, #8B6914cc 0%, transparent 25%),
+    radial-gradient(circle at 70% 55%, #6B4423cc 0%, transparent 20%),
+    radial-gradient(circle at 45% 70%, #5D4037aa 0%, transparent 22%),
+    radial-gradient(circle at 60% 30%, #795548bb 0%, transparent 18%);
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.wash-progress {
+  width: 100%;
+  height: 16px;
+  background: #dfe4ea;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.wash-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #4ecdc4, #6ee7b7);
+  border-radius: 8px;
+  transition: width 0.15s;
+}
+
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  pointer-events: none;
+  animation: bubble-up 0.8s ease-out forwards;
+}
+
+@keyframes bubble-up {
+  to { transform: translateY(-40px) scale(1.5); opacity: 0; }
+}
+
+/* —— Puzzles / shape sorting —— */
+.shapes-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.shape-slot {
+  aspect-ratio: 1;
+  background: var(--white);
+  border-radius: 20px;
+  border: 4px dashed #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  position: relative;
+}
+
+.shape-slot.highlight {
+  border-color: var(--purple);
+  background: #f3e8ff;
+}
+
+.shape-slot.filled {
+  border-style: solid;
+  border-color: var(--green);
+  background: #ecfdf5;
+}
+
+.shape-outline {
+  width: 70%;
+  height: 70%;
+  opacity: 0.35;
+}
+
+.shapes-tray {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--white);
+  border-radius: var(--radius);
+}
+
+.shape-piece {
+  width: 72px;
+  height: 72px;
+  cursor: grab;
+  touch-action: none;
+  filter: drop-shadow(0 3px 2px rgba(0,0,0,0.15));
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.shape-piece.dragging { opacity: 0.5; transform: scale(1.1); }
+.shape-piece.placed { display: none; }
+
+.shape-piece svg, .shape-outline svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* —— Drawing —— */
+.draw-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.color-swatch {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.color-swatch.active {
+  border-color: var(--text);
+  transform: scale(1.12);
+}
+
+.brush-btn, .tool-btn {
+  background: #f1f2f6;
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 0 #dfe4ea;
+}
+
+.brush-btn.active {
+  background: var(--purple);
+  color: white;
+  box-shadow: 0 2px 0 #7c3aed;
+}
+
+.canvas-wrap {
+  flex: 1;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: inset 0 0 0 4px #e8e8e8, 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
+  min-height: 280px;
+  touch-action: none;
+}
+
+#paintCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.stamps-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.stamp-btn {
+  font-size: 1.75rem;
+  width: 52px;
+  height: 52px;
+  background: #fff8e7;
+  border-radius: 12px;
+  box-shadow: 0 2px 0 #ffeaa7;
+  padding: 0;
+}
+
+.stamp-btn.active {
+  background: var(--accent);
+  box-shadow: 0 2px 0 #f0c040;
+}
+
+/* Progress dots */
+.progress-dots {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #dfe4ea;
+}
+.dot.done { background: var(--green); }
+
+@media (min-width: 480px) {
+  .game-grid { gap: 1.25rem; }
+  .game-card { min-height: 160px; }
+}
